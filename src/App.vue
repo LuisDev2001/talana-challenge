@@ -1,29 +1,21 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link>
-  </div>
+  <PxHaeader />
   <router-view />
+  <PxFooter />
 </template>
 
+<script>
+import PxHaeader from "@/components/Header/PxHaeader";
+import PxFooter from "@/components/Footer/PxFooter";
+
+export default {
+  components: {
+    PxHaeader,
+    PxFooter,
+  },
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+@import "~@/assets/scss/_base.scss";
 </style>

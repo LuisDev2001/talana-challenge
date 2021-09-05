@@ -1,0 +1,11 @@
+@import "../utils/_variables.scss";
+
+.footer {
+  height: 20px;
+  width: 100%;
+  text-align: center;
+  line-height: 20px;
+  p {
+    font-family: $font-medium;
+  }
+}
