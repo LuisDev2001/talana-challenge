@@ -1,10 +1,14 @@
 @import "../utils/_variables.scss";
 
 .footer {
-  height: 20px;
+  height: 40px;
   width: 100%;
   text-align: center;
-  line-height: 20px;
+  line-height: 40px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  grid-area: footer;
   p {
     font-family: $font-medium;
   }

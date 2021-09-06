@@ -1,0 +1,17 @@
+#app {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header "
+    "sidebar view "
+    "sidebar view "
+    "footer footer ";
+  min-height: 100vh;
+  align-content: baseline;
+}
+.view {
+  grid-area: view;
+  height: calc(100vh - 99px);
+  padding: 1rem;
+}
