@@ -2,9 +2,17 @@
   <section class="sidebar">
     <h2>Categorias</h2>
     <ul class="siderbar__list">
-      <li class="sidebar__item">
-        <router-link class="sidebar__link" to="/">
-          Categorias 1
+      <li
+        class="sidebar__item"
+        v-for="category in categories"
+        :key="category.id"
+      >
+        <router-link
+          class="sidebar__link"
+          :to="'/category/' + category.name.toLowerCase() + '/' + category.id"
+          @click="handleUpdateView(category.name)"
+        >
+          {{ category.name }}
           <font-awesome-icon icon="chevron-right" />
         </router-link>
       </li>
@@ -13,6 +21,8 @@
 </template>
 
 <script>
+import { onMounted, ref } from "vue";
+import { useStore } from "vuex";
 //Icons
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -23,6 +33,41 @@ export default {
   name: "PxSideBarCategories",
   components: {
     FontAwesomeIcon,
+  },
+  setup() {
+    const store = useStore();
+
+    const categories = ref([]);
+
+    onMounted(async () => {
+      await getCategories();
+    });
+
+    const getCategories = async () => {
+      categories.value.push({
+        id: 0,
+        name: "All",
+        order: 0,
+      });
+      try {
+        const response = await fetch(
+          "http://sva.talana.com:8000/api/product-category/"
+        );
+        const data = await response.json();
+        data.forEach((category) => categories.value.push(category));
+      } catch (error) {
+        console.log(`Error: ${error}`);
+      }
+    };
+
+    const handleUpdateView = (view) => {
+      store.commit("setView", view);
+    };
+
+    return {
+      categories,
+      handleUpdateView,
+    };
   },
 };
 </script>

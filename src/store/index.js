@@ -1,12 +1,21 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
 export default createStore({
   state: {
+    view: "",
   },
   mutations: {
+    setView(state, viewParam) {
+      state.view = viewParam;
+    },
   },
   actions: {
+    setView: ({ commit }) => commit("setView"),
   },
-  modules: {
-  }
-})
+  modules: {},
+  getters: {
+    getView(state) {
+      return state.view;
+    },
+  },
+});
