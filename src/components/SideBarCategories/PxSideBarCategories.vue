@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 //Icons
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -38,6 +38,10 @@ export default {
     const store = useStore();
 
     const categories = ref([]);
+
+    const products = computed(() => store.getters["getProducts"]);
+
+    const result = ref([]);
 
     onMounted(async () => {
       await getCategories();
@@ -60,9 +64,29 @@ export default {
       }
     };
 
-    const handleUpdateView = (view, code) => {
+    const handleUpdateView = async (view, code) => {
       store.commit("setView", view);
       store.commit("setViewCode", code);
+      if (view == "All") {
+        const products = await getProducts();
+        store.commit("setProducts", products);
+      } else {
+        const products = await getProducts();
+        const result = products.filter(
+          (product) => product.category.name === view
+        );
+        store.commit("setProducts", result);
+      }
+    };
+
+    const getProducts = async () => {
+      try {
+        const response = await fetch("http://sva.talana.com:8000/api/product/");
+        const products = await response.json();
+        return products;
+      } catch (error) {
+        console.log(`Error ${error}`);
+      }
     };
 
     return {

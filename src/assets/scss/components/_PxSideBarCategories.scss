@@ -4,6 +4,8 @@
   grid-area: sidebar;
   height: calc(100vh - 99px);
   padding: 1rem;
+  position: sticky;
+  top: 0;
   h2 {
     margin: 0 0 0.8rem 0;
   }

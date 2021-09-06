@@ -5,6 +5,7 @@ export default createStore({
     view: "",
     viewCode: 0,
     modalAddedProduct: false,
+    products: [],
     informationProduct: {},
     modalMiniCart: false,
     cartProducts: [],
@@ -16,6 +17,9 @@ export default createStore({
     },
     setViewCode(state, viewCodeParam) {
       state.viewCode = viewCodeParam;
+    },
+    setProducts(state, payload) {
+      state.products = payload;
     },
     setModalAddedProduct(state) {
       state.modalAddedProduct = !state.modalAddedProduct;
@@ -41,6 +45,7 @@ export default createStore({
   actions: {
     setView: ({ commit }) => commit("setView"),
     setViewCode: ({ commit }) => commit("setViewCode"),
+    setProducts: ({ commit }) => commit("setProducts"),
     setModalAddedProduct: ({ commit }) => commit("setModalAddedProduct"),
     setInformationProduct: ({ commit }) => commit("setInformationProduct"),
     setCartProducts: ({ commit }) => commit("setCartProducts"),
@@ -55,6 +60,9 @@ export default createStore({
     },
     getViewCode(state) {
       return state.viewCode;
+    },
+    getProducts(state) {
+      return state.products;
     },
     getModalAddedProduct(state) {
       return state.modalAddedProduct;

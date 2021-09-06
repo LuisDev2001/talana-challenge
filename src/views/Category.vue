@@ -45,21 +45,7 @@ export default {
       () => store.getters["getModalAddedProduct"]
     );
 
-    const infoProducts = ref([]);
-
-    onMounted(async () => {
-      await getProducts();
-    });
-
-    const getProducts = async () => {
-      try {
-        const response = await fetch("http://sva.talana.com:8000/api/product/");
-        const data = await response.json();
-        infoProducts.value = data;
-      } catch (error) {
-        console.log(`Error ${error}`);
-      }
-    };
+    const infoProducts = computed(() => store.getters["getProducts"]);
 
     return {
       view,
