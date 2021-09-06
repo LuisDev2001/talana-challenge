@@ -9,6 +9,7 @@
           :productUrl="product.photo"
           :productName="product.name"
           :productPrice="product.price"
+          :productStock="product.stock"
         />
       </div>
     </GenericView>

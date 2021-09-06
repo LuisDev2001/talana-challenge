@@ -2,10 +2,11 @@
 
 .product {
   height: auto;
-  padding: 15px 10px;
+  padding: 15px 0;
   border-radius: 10px;
   border: 1px solid #cccccc;
   transition: box-shadow 0.3s ease;
+  position: relative;
   &:hover {
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
   }
@@ -15,6 +16,10 @@
     max-width: 200px;
     height: 237px;
     margin: 0 auto 10px;
+  }
+  &__information {
+    border-top: 1px solid #cccccc;
+    padding: 10px 10px 5px 10px;
   }
   &__name {
     font-size: 18px;
@@ -33,6 +38,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 5px 10px;
   }
   .btn.btn-add {
     width: 50px;
@@ -47,5 +53,15 @@
     &:hover {
       background: rgba(0, 0, 0, 0.2);
     }
+  }
+  &__available {
+    position: absolute;
+    bottom: 140px;
+    left: 10px;
+    width: auto;
+    padding: 5px 10px;
+    background: #fd6161;
+    color: #ffffff;
+    border-radius: 6px;
   }
 }

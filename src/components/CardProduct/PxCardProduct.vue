@@ -1,5 +1,8 @@
 <template>
   <div class="product">
+    <div v-if="productStock > 0" class="product__available">
+      Disponible
+    </div>
     <img :src="productUrl" alt="" class="product__image" />
     <section class="product__information">
       <p class="product__name">{{ productName }}</p>
@@ -29,6 +32,7 @@ export default {
     productUrl: String,
     productName: String,
     productPrice: Number,
+    productStock: Number,
   },
   components: {
     PxInputQty,
