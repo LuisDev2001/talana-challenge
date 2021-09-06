@@ -71,6 +71,32 @@
       height: 200px;
       line-height: 20px;
       letter-spacing: 0.5px;
+      &::-webkit-scrollbar {
+        -webkit-appearance: none;
+      }
+
+      &::-webkit-scrollbar:vertical {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-button:increment,
+      &::-webkit-scrollbar-button {
+        display: none;
+      }
+
+      &::-webkit-scrollbar:horizontal {
+        height: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #a7a7a7;
+        border-radius: 20px;
+        border: 0;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+      }
     }
   }
   &__actions {

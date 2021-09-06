@@ -6,6 +6,7 @@ export default createStore({
     viewCode: 0,
     modalAddedProduct: false,
     informationProduct: {},
+    cartProducts: [],
   },
   mutations: {
     setView(state, viewParam) {
@@ -22,12 +23,16 @@ export default createStore({
         ...payload,
       };
     },
+    setCartProducts(state, payload) {
+      state.cartProducts.push(payload);
+    },
   },
   actions: {
     setView: ({ commit }) => commit("setView"),
     setViewCode: ({ commit }) => commit("setViewCode"),
     setModalAddedProduct: ({ commit }) => commit("setModalAddedProduct"),
     setInformationProduct: ({ commit }) => commit("setInformationProduct"),
+    setCartProducts: ({ commit }) => commit("setCartProducts"),
   },
   modules: {},
   getters: {
@@ -42,6 +47,9 @@ export default createStore({
     },
     getInformationProduct(state) {
       return state.informationProduct;
+    },
+    getCartProducts(state) {
+      return state.cartProducts;
     },
   },
 });

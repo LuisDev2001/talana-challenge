@@ -29,7 +29,9 @@
       </div>
       <div class="added__actions">
         <button @click="handleCloseModalAdded">Seguir comprando</button>
-        <button class="btn btn-add">Agregar al carrito</button>
+        <button class="btn btn-add" @click="handleAddProduct">
+          Agregar al carrito
+        </button>
       </div>
     </div>
   </div>
@@ -69,6 +71,15 @@ export default {
       store.commit("setModalAddedProduct");
     };
 
+    const objInfoProduct = ref({
+      productUrl: "",
+      productName: "",
+      productCode: "",
+      productPrice: "",
+      productQty: "",
+      productDescription: "",
+    });
+
     onUpdated(() => {
       productUrl.value = getInfoProductSelected.value.image;
       productName.value = getInfoProductSelected.value.name;
@@ -77,7 +88,20 @@ export default {
       productQty.value = getInfoProductSelected.value.productQty;
       productDescription.value =
         getInfoProductSelected.value.productDescription;
+
+      objInfoProduct.value = {
+        productUrl: getInfoProductSelected.value.image,
+        productName: getInfoProductSelected.value.name,
+        productCode: getInfoProductSelected.value.productCode,
+        productPrice: getInfoProductSelected.value.productPrice,
+        productQty: getInfoProductSelected.value.productQty,
+        productDescription: getInfoProductSelected.value.productDescription,
+      };
     });
+
+    const handleAddProduct = () => {
+      store.commit("setCartProducts", objInfoProduct.value);
+    };
 
     return {
       productUrl,
@@ -87,6 +111,7 @@ export default {
       productQty,
       productDescription,
       handleCloseModalAdded,
+      handleAddProduct,
     };
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="product__input">
     <button @click="handleDecrementQty">-</button>
-    <input type="number" v-model="valueInput" min="1" />
+    <input type="number" v-model="valueInput" min="1" max="99" />
     <button @click="handleIncrementeQty">+</button>
   </div>
 </template>
@@ -15,10 +15,16 @@ export default {
 
     const handleIncrementeQty = () => {
       valueInput.value++;
+      if (valueInput.value > 15) {
+        valueInput.value = 14;
+      }
     };
 
     const handleDecrementQty = () => {
       valueInput.value--;
+      if (valueInput.value < 0) {
+        valueInput.value = 1;
+      }
     };
 
     return {
