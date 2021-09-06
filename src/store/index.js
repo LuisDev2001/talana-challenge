@@ -6,7 +6,9 @@ export default createStore({
     viewCode: 0,
     modalAddedProduct: false,
     informationProduct: {},
+    modalMiniCart: false,
     cartProducts: [],
+    totalProducts: 0,
   },
   mutations: {
     setView(state, viewParam) {
@@ -23,8 +25,17 @@ export default createStore({
         ...payload,
       };
     },
+    setShowModalMiniCart(state) {
+      state.modalMiniCart = true;
+    },
+    setHideModalMiniCart(state) {
+      state.modalMiniCart = false;
+    },
     setCartProducts(state, payload) {
       state.cartProducts.push(payload);
+    },
+    setTotalProducts(state, priceProduct) {
+      state.totalProducts += priceProduct;
     },
   },
   actions: {
@@ -33,6 +44,9 @@ export default createStore({
     setModalAddedProduct: ({ commit }) => commit("setModalAddedProduct"),
     setInformationProduct: ({ commit }) => commit("setInformationProduct"),
     setCartProducts: ({ commit }) => commit("setCartProducts"),
+    setTotalProducts: ({ commit }) => commit("setTotalProducts"),
+    setShowModalMiniCart: ({ commit }) => commit("setShowModalMiniCart"),
+    setHideModalMiniCart: ({ commit }) => commit("setHideModalMiniCart"),
   },
   modules: {},
   getters: {
@@ -50,6 +64,12 @@ export default createStore({
     },
     getCartProducts(state) {
       return state.cartProducts;
+    },
+    getTotalProducts(state) {
+      return state.totalProducts;
+    },
+    getModalMiniCart(state) {
+      return state.modalMiniCart;
     },
   },
 });

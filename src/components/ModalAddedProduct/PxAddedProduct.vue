@@ -101,6 +101,9 @@ export default {
 
     const handleAddProduct = () => {
       store.commit("setCartProducts", objInfoProduct.value);
+      store.commit("setModalAddedProduct");
+      store.commit("setTotalProducts", productPrice.value);
+      store.commit("setShowModalMiniCart");
     };
 
     return {

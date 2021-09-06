@@ -6,13 +6,18 @@
 
     <section class="header__actions">
       <PxSearch />
-      <PxMiniCart />
+      <PxMiniCart @click="openModalMiniCart" />
+      <PxModalCart :openCart="stateModalMiniCart" />
     </section>
   </header>
 </template>
 
 <script>
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+//UI
 import PxMiniCart from "../Cart/PxMiniCart";
+import PxModalCart from "../Cart/PxModalCart";
 import PxSearch from "../Search/PxSearch";
 
 export default {
@@ -20,6 +25,23 @@ export default {
   components: {
     PxMiniCart,
     PxSearch,
+    PxModalCart,
+  },
+  setup() {
+    const store = useStore();
+
+    const stateModalMiniCart = computed(
+      () => store.getters["getModalMiniCart"]
+    );
+
+    const openModalMiniCart = () => {
+      store.commit("setShowModalMiniCart");
+    };
+
+    return {
+      openModalMiniCart,
+      stateModalMiniCart,
+    };
   },
 };
 </script>
