@@ -10,9 +10,12 @@
           :productName="product.name"
           :productPrice="product.price"
           :productStock="product.stock"
+          :productCode="product.code"
+          :productDescription="product.description"
         />
       </div>
     </GenericView>
+    <PxAddedProduct :openModalAdded="openModalAdded" />
   </div>
 </template>
 
@@ -23,17 +26,24 @@ import { useStore } from "vuex";
 import GenericView from "@/Layout/GenericView";
 import PxBreadcrumb from "@/components/Breadcrumb/PxBreadcrumb";
 import PxCardProduct from "@/components/CardProduct/PxCardProduct";
+import PxAddedProduct from "@/components/ModalAddedProduct/PxAddedProduct";
+
 export default {
   name: "Category",
   components: {
     GenericView,
     PxBreadcrumb,
     PxCardProduct,
+    PxAddedProduct,
   },
   setup() {
     const store = useStore();
 
     const view = computed(() => store.getters["getView"]);
+
+    const openModalAdded = computed(
+      () => store.getters["getModalAddedProduct"]
+    );
 
     const infoProducts = ref([]);
 
@@ -54,6 +64,7 @@ export default {
     return {
       view,
       infoProducts,
+      openModalAdded,
     };
   },
 };

@@ -10,7 +10,7 @@
         <router-link
           class="sidebar__link"
           :to="'/category/' + category.name.toLowerCase() + '/' + category.id"
-          @click="handleUpdateView(category.name)"
+          @click="handleUpdateView(category.name, category.id)"
         >
           {{ category.name }}
           <font-awesome-icon icon="chevron-right" />
@@ -60,8 +60,9 @@ export default {
       }
     };
 
-    const handleUpdateView = (view) => {
+    const handleUpdateView = (view, code) => {
       store.commit("setView", view);
+      store.commit("setViewCode", code);
     };
 
     return {

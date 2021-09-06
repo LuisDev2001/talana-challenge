@@ -10,7 +10,7 @@
     </section>
     <section class="product__actions">
       <PxInputQty />
-      <button class="btn btn-add">
+      <button class="btn btn-add" @click="openModalDetailsProduct">
         <font-awesome-icon icon="cart-plus" />
       </button>
     </section>
@@ -18,12 +18,14 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
 //UI
 import PxInputQty from "./PxInputQty";
 //Icons
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { ref } from "@vue/reactivity";
 library.add(faCartPlus);
 
 export default {
@@ -33,10 +35,31 @@ export default {
     productName: String,
     productPrice: Number,
     productStock: Number,
+    productCode: String,
+    productDescription: String,
   },
   components: {
     PxInputQty,
     FontAwesomeIcon,
+  },
+  setup(props) {
+    const store = useStore();
+    const objInfoProduct = ref({
+      name: props.productName,
+      image: props.productUrl,
+      productCode: props.productCode,
+      productPrice: props.productPrice,
+      productQty: 1,
+      productDescription: props.productDescription,
+    });
+    const openModalDetailsProduct = () => {
+      store.commit("setModalAddedProduct");
+      store.commit("setInformationProduct", objInfoProduct.value);
+    };
+
+    return {
+      openModalDetailsProduct,
+    };
   },
 };
 </script>
