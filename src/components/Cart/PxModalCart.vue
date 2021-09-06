@@ -1,6 +1,6 @@
 <template>
   <div :class="{ modal__cart: true, active: openCart }">
-    <div class="modal__cart-header" v-if="getCartProducts.length !== 0">
+    <div class="modal__cart-header">
       <h3>Resumen de compra</h3>
       <div class="modal__cart-close" @click="handleCloseModalCart">
         <font-awesome-icon icon="times" />

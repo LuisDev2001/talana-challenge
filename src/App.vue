@@ -1,7 +1,12 @@
 <template>
   <PxHaeader />
   <PxSideBarCategories />
-  <router-view class="view" />
+  <router-view v-slot="{ Component }" class="view">
+    <transition name="mode-fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
+
   <PxFooter />
 </template>
 
