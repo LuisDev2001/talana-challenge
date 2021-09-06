@@ -1,0 +1,51 @@
+@import "../utils/_variables.scss";
+
+.product {
+  height: auto;
+  padding: 15px 10px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+  }
+  &__image {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    height: 237px;
+    margin: 0 auto 10px;
+  }
+  &__name {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    max-width: 200px;
+  }
+  &__price {
+    font-size: 17px;
+    margin: 0 0 10px 0;
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .btn.btn-add {
+    width: 50px;
+    height: 33px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    background: unset;
+    transition: 0.3s ease all;
+    svg {
+      color: #868686;
+    }
+    &:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
