@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 //UI
 import PxMiniCart from "../Cart/PxMiniCart";
